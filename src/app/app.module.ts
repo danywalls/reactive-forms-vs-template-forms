@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FlightsReactiveComponent } from './flights-reactive/flights-reactive.component';
 import { FlightsComponent } from './flights/flights.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { FlightsComponent } from './flights/flights.component';
     FlightsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,55 @@
-<p>flights works!</p>
+<form #flightForm="ngForm" (ngSubmit)="onSubmit(flightForm)" novalidate>
+  <div>
+    <label>Flight:</label>
+    <input
+      type="radio"
+      name="flightType"
+      value="roundtrip"
+      [(ngModel)]="flightType"
+      required
+    />Round trip
+    <input
+      type="radio"
+      name="flightType"
+      value="oneway"
+      [(ngModel)]="flightType"
+      required
+    />One way
+  </div>
+  <div>
+    <label>From:</label>
+    <select name="from" [(ngModel)]="from" required>
+      <option value="" disabled>Select an airport</option>
+      <option value="JFK">John F. Kennedy International Airport</option>
+      <option value="LAX">Los Angeles International Airport</option>
+      <option value="ORD">O'Hare International Airport</option>
+      <option value="DFW">Dallas/Fort Worth International Airport</option>
+    </select>
+  </div>
+  <div>
+    <label>To:</label>
+    <select name="to" [(ngModel)]="to" required>
+      <option value="" disabled>Select an airport</option>
+      <option value="JFK">John F. Kennedy International Airport</option>
+      <option value="LAX">Los Angeles International Airport</option>
+      <option value="ORD">O'Hare International Airport</option>
+      <option value="DFW">Dallas/Fort Worth International Airport</option>
+    </select>
+  </div>
+  <div>
+    <label>Depart:</label>
+    <input type="date" name="depart" [(ngModel)]="depart" required />
+  </div>
+  <div *ngIf="flightType === 'roundtrip'">
+    <label>Return:</label>
+    <input type="date" name="return" [(ngModel)]="return" required />
+  </div>
+  <div>
+    <label>Passengers:</label>
+    <select name="passengers" [(ngModel)]="passengers" required>
+      <option value="" disabled>Select number of passengers</option>
+      <option *ngFor="let i of passengerOptions" [value]="i">{{ i }}</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="!flightForm.valid">Submit</button>
+</form>

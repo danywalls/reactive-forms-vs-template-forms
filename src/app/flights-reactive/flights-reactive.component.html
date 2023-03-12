@@ -1,1 +1,39 @@
-<p>flights-reactive works!</p>
+<form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Flight:</label>
+    <input type="radio" formControlName="flightType" value="roundtrip" />Round
+    trip <input type="radio" formControlName="flightType" value="oneway" />One
+    way
+  </div>
+  <div>
+    <label>From:</label>
+    <select formControlName="from">
+      <option *ngFor="let airport of airports" [value]="airport.code">
+        {{ airport.name }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>To:</label>
+    <select formControlName="to">
+      <option *ngFor="let airport of airports" [value]="airport.code">
+        {{ airport.name }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>Depart:</label>
+    <input type="date" formControlName="depart" />
+  </div>
+  <div *ngIf="flightForm.get('flightType')?.value === 'roundtrip'">
+    <label>Return:</label>
+    <input type="date" formControlName="return" />
+  </div>
+  <div>
+    <label>Passengers:</label>
+    <select formControlName="passengers">
+      <option *ngFor="let i of passengerOptions" [value]="i">{{ i }}</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="!flightForm.valid">Submit</button>
+</form>
